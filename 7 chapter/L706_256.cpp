@@ -1,3 +1,4 @@
+#include "L706_256.hpp"
 #include <iostream>
 #include <vector>
 using namespace std;
