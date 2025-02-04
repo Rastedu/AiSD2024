@@ -5,7 +5,7 @@ using namespace std;
 
 #define MAXN 45
 
-long binomial_coefficient(n, m)
+long binomial_coefficient(size_t n, size_t m)
 {
     long bc[MAXN][MAXN];
     for (int i=0; i<=n; i++) bc[i][0] = 1;

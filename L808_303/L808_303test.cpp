@@ -4,6 +4,9 @@
 #include "L806_301.hpp"
 #include "L808_303.hpp"
 #include <iostream>
+#include <fstream>
+#include <string>
+#include <vector>
 #include <cstring>
 
 using namespace std;
@@ -12,6 +15,35 @@ using namespace std;
 #define INSERT 1
 #define DELETE 2
 #define MAXLEN 10 // Изменяемое значение, которое Скиена не задал в этом параграфе
+
+vector<string> reading(const string& file)
+{
+    vector<string> lines;
+    string line;
+    ifstream in(file);
+    if (in.is_open())
+    {
+        while (getline(in, line))
+        {
+            lines.push_back(line);
+        }
+    }
+    in.close();
+    return lines;
+}
+
+string randv (string s, size_t val) // разделяй и властвуй; строка и номер слова
+{
+    vector<string> words;
+    size_t start = 0;
+    size_t end;
+    while ((end = s.find(' ', start)) != string::npos) {
+        words.push_back(s.substr(start, end - start));
+        start = end + 1;
+    }
+    words.push_back(s.substr(start));
+    return words[val];
+}
 
 typedef struct {
 	int cost; /* Стоимость попадания в данную ячейку*/
@@ -70,4 +102,19 @@ int main () {
         }
     }
     cout<<string_compare(a, b);
+	vector<string> text = reading("L808_303test.txt");
+	for (size_t i=0; i<MAXLEN; ++i)
+    {
+        for (size_t j=0; j<MAXLEN; ++j)
+        {
+            m[i][j].cost=i+j;
+        }
+    }
+    for(string line : text)
+    {
+        char *a,*b;
+        strcpy(a, randv(line, 1).c_str());
+        strcpy(b, randv(line, 2).c_str());
+        cout<<string_compare(a, b);
+    }
 }

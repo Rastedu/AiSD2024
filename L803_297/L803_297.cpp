@@ -1,8 +1,8 @@
-include "L802_296.hpp"
-
+#include "L802_296.hpp"
 #include <iostream>
 
 using namespace std;
+#define MAXN 45
 
 long f[MAXN+1];
 
