@@ -24,5 +24,5 @@ long fib_c_driver(int n)
 }
 
 int main () {
-    cout<<fib_r_driver(5);
+    cout<<fib_c_driver(5);
 }

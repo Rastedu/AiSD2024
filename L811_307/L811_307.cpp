@@ -15,7 +15,7 @@ int indel (char c)
 }
 
 int main() {
-    char* a="cr", b="lf";
-    cout<<match(a,b)<<match(a,a);
+    char a='a', b='b', c='c';
+    cout<<match(a,b)<<match(c,c);
     cout<<"\n"<<indel(a);
 }

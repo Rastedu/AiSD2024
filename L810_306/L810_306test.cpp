@@ -2,9 +2,28 @@
 #include "L806_301.hpp"
 #include "L807_302.hpp"
 #include <iostream>
+#include <fstream>
+#include <string>
+#include <vector>
 
 using namespace std;
 #define MAXLEN 2 // Изменяемое значение, которое Скиена не задал в этом параграфе
+
+vector<string> reading(const string& file)
+{
+    vector<string> lines;
+    string line;
+    ifstream in(file);
+    if (in.is_open())
+    {
+        while (getline(in, line))
+        {
+            lines.push_back(line);
+        }
+    }
+    in.close();
+    return lines;
+}
 
 typedef struct {
 	int cost; /* Стоимость попадания в данную ячейку*/
@@ -15,8 +34,6 @@ cell m[MAXLEN+1][MAXLEN+1];
 
 void row_init (int i) //Изменён в L814_308.h
 {
-	cell m[MAXLEN+1][MAXLEN+1];
-
 	m[0][i].cost=i;
 	if (i>0)
 		m[0][i].parent = INSERT;
@@ -26,8 +43,6 @@ void row_init (int i) //Изменён в L814_308.h
 
 void column_init (int i)
 {
-	cell m[MAXLEN+1][MAXLEN+1];
-	
 	m[i][0].cost=i;
 	if (i>0)
 		m[i][0].parent = DELETE;
